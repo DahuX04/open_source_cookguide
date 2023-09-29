@@ -44,6 +44,10 @@ export class ManageRecipesComponent {
   }
 
   deleteRecipe(id: number) {
+    const confirmacion = confirm('¿Estás seguro de que quieres eliminar esta receta?');
+    if (!confirmacion) {
+      return;
+    }
     this.recipesService.deleteRecipe(id).subscribe(response => {
       console.log(response);
       this.getRecipesByAuthor(this.authorId);
